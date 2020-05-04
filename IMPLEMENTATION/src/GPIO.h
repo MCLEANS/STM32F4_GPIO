@@ -15,6 +15,12 @@ enum Mode{
 	OUTPUT
 };
 
+enum OUTPUT_Type{
+	PUSH_PULL,
+	OPEN_DRAIN
+};
+
+
 
 
 class _GPIO {

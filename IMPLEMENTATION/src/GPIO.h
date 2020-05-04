@@ -20,7 +20,18 @@ enum OUTPUT_Type{
 	OPEN_DRAIN
 };
 
+enum OUTPUT_Speed{
+	LOW,
+	MEDUIM,
+	HIGH,
+	VERY_HIGH
+};
 
+enum State{
+	NO_PULLUP_PULLDOWN,
+	PULL_UP,
+	PULL_DOWN
+};
 
 
 class _GPIO {

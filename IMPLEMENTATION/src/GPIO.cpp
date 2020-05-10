@@ -30,6 +30,8 @@ _GPIO::_GPIO(GPIO_TypeDef *GPIO,uint8_t PIN):GPIO(GPIO),
 }
 
 void _GPIO::pin_mode(Mode mode){
+	this->mode = mode;
+
 	if(mode == INPUT){
 		GPIO->MODER &= ~(1<<(PIN*2));
 		GPIO->MODER &= ~(1<<((PIN*2)+1));
@@ -41,6 +43,9 @@ void _GPIO::pin_mode(Mode mode){
 }
 
 void _GPIO::output_settings(OUTPUT_Type type, OUTPUT_Speed speed){
+	this->type = type;
+	this->speed = speed;
+
 	if(type == OPEN_DRAIN){
 		GPIO->OTYPER |= (1<<PIN);
 	}
@@ -67,6 +72,8 @@ void _GPIO::output_settings(OUTPUT_Type type, OUTPUT_Speed speed){
 }
 
 void _GPIO::input_state(State state){
+	this->state = state;
+
 	if(state == FLOATING){
 		GPIO->PUPDR &= ~(1<<(PIN*2));
 		GPIO->PUPDR &= ~(1<<((PIN*2)+1));

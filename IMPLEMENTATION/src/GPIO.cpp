@@ -11,10 +11,10 @@ namespace custom_libraries {
 
 _GPIO::_GPIO(GPIO_TypeDef *GPIO,uint8_t PIN):GPIO(GPIO),
 											PIN(PIN),
-											mode(0),
-											type(0),
-											speed(0),
-											state(0){
+											mode(OUTPUT),
+											type(OPEN_DRAIN),
+											speed(LOW),
+											state(FLOATING){
 	// TODO Auto-generated constructor stub
 	//Enable GPIO RCC
 	if(GPIO == GPIOA) RCC->AHB1ENR |= RCC_AHB1ENR_GPIOAEN;

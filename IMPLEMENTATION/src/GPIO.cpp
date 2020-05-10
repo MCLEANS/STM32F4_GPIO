@@ -40,6 +40,16 @@ void _GPIO::pin_mode(Mode mode){
 	}
 }
 
+void _GPIO::output_settings(OUTPUT_Type type, OUTPUT_Speed speed){
+	if(type == OPEN_DRAIN){
+		GPIO->OTYPER |= (1<<PIN);
+	}
+	else if(type == PUSH_PULL){
+		GPIO->OTYPER &= ~(1<<PIN);
+	}
+
+}
+
 _GPIO::~_GPIO() {
 	// TODO Auto-generated destructor stub
 }

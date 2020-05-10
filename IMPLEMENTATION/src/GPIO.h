@@ -38,7 +38,7 @@ enum State{
 
 class _GPIO {
 private:
-	GPIO_TypeDef GPIO;
+	GPIO_TypeDef *GPIO;
 	uint8_t PIN;
 	Mode mode;
 	OUTPUT_Type type;
@@ -47,7 +47,7 @@ private:
 private:
 public:
 public:
-	_GPIO(GPIO_TypeDef GPIO,uint8_t PIN);
+	_GPIO(GPIO_TypeDef *GPIO,uint8_t PIN);
 	void pin_mode(Mode mode);
 	void output_settings(OUTPUT_Type type, OUTPUT_Speed speed);
 	void input_state(State state);

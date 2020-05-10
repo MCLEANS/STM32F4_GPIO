@@ -30,7 +30,7 @@ enum OUTPUT_Speed{
 };
 
 enum State{
-	NO_PULLUP_PULLDOWN,
+	FLOATING,
 	PULL_UP,
 	PULL_DOWN
 };

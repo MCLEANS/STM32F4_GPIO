@@ -82,6 +82,15 @@ void _GPIO::input_state(State state){
 	}
 }
 
+void _GPIO::digital_write(bool value){
+	if(value){
+		GPIO->ODR |= (1<<PIN);
+	}
+	if(!value){
+		GPIO->ODR &= ~(1<<PIN);
+	}
+}
+
 _GPIO::~_GPIO() {
 	// TODO Auto-generated destructor stub
 }

@@ -91,6 +91,14 @@ void _GPIO::digital_write(bool value){
 	}
 }
 
+bool _GPIO::digital_read(void)const{
+	if(GPIO->IDR & (1<<PIN)){
+		return true;
+	}
+
+	return false;
+}
+
 _GPIO::~_GPIO() {
 	// TODO Auto-generated destructor stub
 }

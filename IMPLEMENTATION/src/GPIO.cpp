@@ -66,6 +66,22 @@ void _GPIO::output_settings(OUTPUT_Type type, OUTPUT_Speed speed){
 
 }
 
+void _GPIO::input_state(State state){
+	if(state == FLOATING){
+		GPIO->PUPDR &= ~(1<<(PIN*2));
+		GPIO->PUPDR &= ~(1<<((PIN*2)+1));
+	}
+	else if(state == PULL_UP){
+		GPIO->PUPDR |= (1<<(PIN*2));
+		GPIO->PUPDR &= ~(1<<((PIN*2)+1));
+
+	}
+	else if(state == PULL_DOWN){
+		GPIO->PUPDR &= ~(1<<(PIN*2));
+		GPIO->PUPDR |= (1<<((PIN*2)+1));
+	}
+}
+
 _GPIO::~_GPIO() {
 	// TODO Auto-generated destructor stub
 }

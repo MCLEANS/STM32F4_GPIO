@@ -10,20 +10,36 @@
 
 
 #include "stm32f4xx.h"
+#include "clockconfig.h"
+#include "GPIO.h"
+
+#define LED_PIN 7
+#define BUTTON_PIN 3
+
+custom_libraries::clock_config system_clock;
+custom_libraries::_GPIO LED(GPIOA,LED_PIN);
+custom_libraries::_GPIO BUTTON(GPIOE,BUTTON_PIN);
 			
 
 int main(void)
 {
-	/*
-	 * Set pin to output
-	 * 1. Enable GPIO RCC
-	 * 2. Set mode to either input or output
-	 * 3. Set output type( Push-pull or open drain)
-	 * 4. output speed
-	 * 5. Pull up or pull down
-	 *
-	 */
+
+	system_clock.initialize();
+	LED.pin_mode(custom_libraries::OUTPUT);
+	LED.output_settings(custom_libraries::PUSH_PULL,custom_libraries::HIGH);
+
+	BUTTON.pin_mode(custom_libraries::INPUT);
+	BUTTON.input_state(custom_libraries::PULL_UP);
+
+
 	while(1){
+
+		if(!BUTTON.digital_read()){
+			LED.digital_write(0);
+		}
+		else{
+			LED.digital_write(1);
+		}
 
 	}
 }

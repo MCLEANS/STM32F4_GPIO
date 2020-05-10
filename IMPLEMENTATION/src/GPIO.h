@@ -8,6 +8,8 @@
 #ifndef GPIO_H_
 #define GPIO_H_
 
+#include "stm32f4xx.h"
+
 namespace custom_libraries {
 
 enum Mode{
@@ -35,8 +37,23 @@ enum State{
 
 
 class _GPIO {
+private:
+	GPIO_TypeDef GPIO;
+	uint8_t PIN;
+	Mode mode;
+	OUTPUT_Type type;
+	OUTPUT_Speed speed;
+	State state;
+private:
 public:
-	_GPIO();
+public:
+	_GPIO(GPIO_TypeDef GPIO,uint8_t PIN);
+	void pin_mode(Mode mode);
+	void output_settings(OUTPUT_Type type, OUTPUT_Speed speed);
+	void input_state(State state);
+	void digital_write(bool value);
+	bool digital_read(void) const;
+
 	~_GPIO();
 };
 

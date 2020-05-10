@@ -47,6 +47,22 @@ void _GPIO::output_settings(OUTPUT_Type type, OUTPUT_Speed speed){
 	else if(type == PUSH_PULL){
 		GPIO->OTYPER &= ~(1<<PIN);
 	}
+	if(speed == LOW){
+		GPIO->OSPEEDR &= ~(1<<(PIN*2));
+		GPIO->OSPEEDR &= ~(1<<((PIN*2)+1));
+	}
+	else if(speed == MEDUIM){
+		GPIO->OSPEEDR |= (1<<(PIN*2));
+		GPIO->OSPEEDR &= ~(1<<((PIN*2)+1));
+	}
+	else if(speed == HIGH){
+		GPIO->OSPEEDR &= ~(1<<(PIN*2));
+		GPIO->OSPEEDR |= (1<<((PIN*2)+1));
+	}
+	else if(speed == VERY_HIGH){
+		GPIO->OSPEEDR |= (1<<(PIN*2));
+		GPIO->OSPEEDR |= (1<<((PIN*2)+1));
+	}
 
 }
 
